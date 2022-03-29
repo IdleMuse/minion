@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css?family=Marcellus&display=swap");
+
+$dark: #151515;
+$light: #CACACA;
+$red: #BB1111;
+$scale: 15;
+
+html{
+   font-size: 16px;
+}
+
+body {
+   font-family: "EB Garamond", serif;
+   text-align: center;
+   background-color: $light;
+   color: $dark;
+
+   .playArea{
+      height: 100vh;
+      width: 100vw;
+
+      .card{
+         box-sizing: border-box;
+         height: (7px * $scale);
+         width: (5px * $scale);
+         border: 1px solid $dark;
+         border-radius: 5px;
+         position: absolute;
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+
+         h1{
+            font-size: 16px;
+            font-weight: 100;
+         }
+      }
+   }
+}
