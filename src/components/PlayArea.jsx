@@ -32,7 +32,8 @@ const PlayArea = ({
   const setCardSelected = (uuid) => (doSelect) =>
     doSelect ? selectCard(uuid) : deselectCard(uuid);
 
-  const [toggleMode, setToggleMode] = useState(false);
+  const [snapMode, setSnapMode] = useState(false);
+  const [shadowMode, setShadowMode] = useState(false);
   const snap = (int, snap) => Math.round(int / snap) * snap;
 
   const onMouseMove = ({ nativeEvent: { x, y } }) => {
@@ -62,11 +63,12 @@ const PlayArea = ({
           setCardSelected={setCardSelected(card.uuid)}
           toggleTapped={() => moves.toggleTapCard(card.uuid)}
           zIndexState={zIndexState}
-          toggleMode={toggleMode}
+          snapMode={snapMode}
+          shadowMode={shadowMode}
           snap={snap}
         />
       ))}
-      <div
+      <footer
         style={{
           position: "absolute",
           bottom: "10px",
@@ -92,12 +94,20 @@ const PlayArea = ({
         </button>
         <button
           onClick={() => {
-            setToggleMode((mode) => !mode);
+            setSnapMode((mode) => !mode);
           }}
         >
-          Snap when dragging: {toggleMode ? "Yes" : "No"}
+          Snap when dragging: {snapMode ? "Yes" : "No"}
         </button>
-      </div>
+        <button
+          onClick={() => {
+            setSnapMode(false);
+            setShadowMode((mode) => !mode)
+          }}
+        >
+          Show shadow when dragging: {shadowMode ? "Yes" : "No"}
+        </button>
+      </footer>
     </div>
   );
 };

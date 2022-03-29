@@ -7,7 +7,8 @@ const Card = ({
   setCardSelected,
   zIndexState: [highestZ, setHighestZ],
   toggleTapped,
-  toggleMode,
+  snapMode,
+  shadowMode,
   snap,
   ...props
 }) => {
@@ -16,13 +17,13 @@ const Card = ({
   const [z, setZ] = useState(1);
 
   const position = {
-    x: displayPosition ? displayPosition.x - dragPoint.x : card.x,
-    y: displayPosition ? displayPosition.y - dragPoint.y : card.y
+    x: displayPosition && displayPosition.x ? displayPosition.x - dragPoint.x : card.x,
+    y: displayPosition && displayPosition.y ? displayPosition.y - dragPoint.y : card.y
   };
 
-  if (toggleMode) {
-    position.x = snap(position.x, 20);
-    position.y = snap(position.y, 22);
+  const snappedPosition = {
+    x: snap(position.x, 20),
+    y: snap(position.y, 22)
   }
 
   useEffect(() => {
@@ -50,17 +51,16 @@ const Card = ({
         y: position.y
       });
       setDragging(false);
-      // setCardSelected(false);
     }
   };
 
-  return (
+  return (<>
     <div
       className="card"
       style={{
         background: "white",
-        left: position.x,
-        top: position.y,
+        left: snapMode ? snappedPosition.x : position.x,
+        top: snapMode ? snappedPosition.y : position.y,
         transform: "translate(-50%, -50%)",
         zIndex: z,
         rotate: card.tapped ? "0turn" : "0turn"
@@ -71,7 +71,19 @@ const Card = ({
     >
       <h1>{card.title}</h1>
     </div>
-  );
+    {shadowMode ? <div
+      className="card"
+      style={{
+        background: "rgba(50,50,50,0.5)",
+        border: "none",
+        left: snappedPosition.x,
+        top: snappedPosition.y,
+        transform: "translate(-50%, -50%)",
+        zIndex: 0,
+        rotate: card.tapped ? "0turn" : "0turn"
+      }}
+    ></div>: null}
+  </>);
 };
 
 export default Card;
