@@ -1,7 +1,7 @@
 {
   "name": "minion",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.3",
+  "description": "A generic card game simulator",
   "keywords": [],
   "main": "src/index.jsx",
   "dependencies": {
