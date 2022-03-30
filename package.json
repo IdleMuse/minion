@@ -1,6 +1,6 @@
 {
   "name": "minion",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A generic card game simulator",
   "keywords": [],
   "main": "src/index.jsx",
@@ -10,11 +10,11 @@
     "normalize.css": "^8.0.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-scripts": "^5.0.0",
     "sass": "^1.49.9",
     "styled-components": "^5.3.5"
   },
   "scripts": {
+    "postinstall": "husky install",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -25,5 +25,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "husky": "^7.0.4",
+    "react-scripts": "^5.0.0"
+  }
 }
