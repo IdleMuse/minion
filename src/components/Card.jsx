@@ -53,7 +53,7 @@ const Card = ({
       setDragging(false);
     }
   };
-
+  
   return (<>
     <div
       className="card"

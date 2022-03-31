@@ -68,13 +68,8 @@ const PlayArea = ({
           snap={snap}
         />
       ))}
-      <footer
-        style={{
-          position: "absolute",
-          bottom: "10px",
-          left: "10px"
-        }}
-      >
+      <footer>
+        <div className="buttonGroup">
         <button
           onClick={() => {
             undo();
@@ -107,6 +102,8 @@ const PlayArea = ({
         >
           Show shadow when dragging: {shadowMode ? "Yes" : "No"}
         </button>
+        </div>
+        <label>v{process.env.REACT_APP_VERSION}</label>
       </footer>
     </div>
   );
